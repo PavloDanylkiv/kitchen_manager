@@ -15,6 +15,9 @@ class DishType(models.Model):
 class Cook(AbstractUser):
     years_of_experience = models.IntegerField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = "Cook"
+
     def __str__(self):
         return f"{self.username}: ({self.first_name} {self.last_name})"
 
