@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 class DishType(models.Model):
     name = models.CharField(max_length=255)
 
@@ -44,10 +45,7 @@ class Dish(models.Model):
         settings.AUTH_USER_MODEL,
         related_name="dishes",
     )
-    ingredients = models.ManyToManyField(
-        Ingredient,
-        related_name="dishes"
-    )
+    ingredients = models.ManyToManyField(Ingredient, related_name="dishes")
 
     class Meta:
         ordering = ("name",)
