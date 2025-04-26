@@ -118,6 +118,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 ASSETS_ROOT = "/static/assets"
 
 
@@ -125,5 +127,9 @@ ASSETS_ROOT = "/static/assets"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = "/restaurant/"
+
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 AUTH_USER_MODEL = "restaurant.Cook"
