@@ -11,10 +11,9 @@
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
         <h6 class="text-uppercase mb-4 font-weight-bold text-white">Quick Links</h6>
         <p><a href="{% url 'restaurant:index' %}" class="text-white text-decoration-none">Home</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Dishes</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Cooks</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Dish Types</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Ingredients</a></p>
+        <p><a href="{% url 'restaurant:dish-list' %}" class="text-white text-decoration-none">Dishes</a></p>
+        <p><a href="{% url 'restaurant:cook-list' %}" class="text-white text-decoration-none">Cooks</a></p>
+        <p><a href="{% url 'restaurant:dish-type-list' %}" class="text-white text-decoration-none">Dish Types</a></p>
       </div>
 
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
