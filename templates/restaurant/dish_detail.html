@@ -1,0 +1,91 @@
+{% extends "layouts/base-presentation.html" %}
+
+{% block content %}
+  <div class="container mt-7 pt-1">
+
+    <div class="position-relative mb-5">
+      <a href="{% url 'restaurant:dish-list' %}" class="btn btn-secondary btn-sm position-absolute" style="left: 0; top: 50%; transform: translateY(-50%);">
+        Back
+      </a>
+      <div class="text-center">
+        <h1 class="display-4 fw-bold">{{ dish.name }}</h1>
+        <p class="lead text-muted">{{ dish.description }}</p>
+      </div>
+    </div>
+
+
+    <div class="mb-5 d-flex justify-content-center">
+  <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+    <div class="text-center">
+      <h4 class="text-primary mb-3">Dish Type</h4>
+      <span class="badge bg-gradient-primary fs-5 py-2 px-3">{{ dish.dish_type }}</span>
+    </div>
+  </div>
+</div>
+
+    {% if dish.cooks.all %}
+    <h3 class="mt-5 mb-3 text-primary">Cooks</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover shadow-sm rounded">
+        <thead class="table-light">
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Years of experience</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cook in dish.cooks.all %}
+            <tr>
+              <td>{{ cook.first_name }}</td>
+              <td>{{ cook.last_name }}</td>
+              <td>{{ cook.years_of_experience }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+    {% if dish.ingredients.all %}
+    <h3 class="mt-5 mb-3 text-primary">Ingredients</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover shadow-sm rounded">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Is Vegan</th>
+            <th>Calories</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ingredient in dish.ingredients.all %}
+            <tr>
+              <td>{{ ingredient.name }}</td>
+              <td>
+                {% if ingredient.is_vegan %}
+                  <span class="text-success">✅ Vegan</span>
+                {% else %}
+                  <span class="text-danger">❌ Not Vegan</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if ingredient.calories %}
+                  {{ ingredient.calories }} kcal
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      <div class="d-flex justify-content-center gap-3 my-4">
+      <a href="#" class="btn btn-danger btn-rounded btn-sm">Delete</a>
+      <a href="#" class="btn btn-primary btn-rounded btn-sm">Update</a>
+    </div>
+    {% endif %}
+
+  </div>
+{% endblock %}

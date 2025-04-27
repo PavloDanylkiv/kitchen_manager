@@ -62,6 +62,11 @@ class DishListView(generic.ListView):
         return queryset
 
 
+class DishDetailView(generic.DetailView):
+    model = Dish
+    queryset = Dish.objects.select_related().prefetch_related()
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
