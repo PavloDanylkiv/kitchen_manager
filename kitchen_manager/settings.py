@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "restaurant",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,5 @@ LOGIN_REDIRECT_URL = "/restaurant/"
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 AUTH_USER_MODEL = "restaurant.Cook"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
