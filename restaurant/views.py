@@ -41,6 +41,10 @@ class CookListView(generic.ListView):
         return queryset
 
 
+class CookDetailView(generic.DetailView):
+    model = Cook
+
+
 class DishListView(generic.ListView):
     model = Dish
     template_name = "restaurant/dish_list.html"
