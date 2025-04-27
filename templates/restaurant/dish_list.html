@@ -4,9 +4,11 @@
 {% block content %}
   <div class="container mt-7 pt-5">
     <h1>Dish List</h1>
-    <form action="" method="get" class="form-inline mb-4" style="max-width: 400px;">
-      {{ search_form|crispy }}
-      <input class="btn btn-secondary" type="submit" value="🔎">
+    <form action="" method="get" class="d-flex align-items-center mb-4" style="max-width: 400px;">
+      <div class="flex-grow-1 me-2">
+        {{ search_form|crispy }}
+      </div>
+      <button class="btn btn-secondary" type="submit">🔎</button>
     </form>
     {% if dish_list %}
       <div class="table-responsive">
