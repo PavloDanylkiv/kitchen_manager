@@ -1,0 +1,39 @@
+{% extends "layouts/base-presentation.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container mt-7 pt-5">
+    <h1>Dish Type List</h1>
+    <form action="" method="get" class="d-flex align-items-center mb-4" style="max-width: 400px;">
+      <div class="flex-grow-1 me-2">
+        {{ search_form|crispy }}
+      </div>
+      <button class="btn btn-secondary" type="submit">🔎</button>
+    </form>
+    {% if dish_type_list %}
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0 table-borderless">
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dish in dish_type_list %}
+              <tr>
+                <td>{{ dish.name }}</td>
+                <td>
+                  <a href="#">See dishes for {{ dish.name }}</a>
+                </td>
+                <td class="d-flex gap-2 flex-wrap">
+                  <a href="#" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
+                  <a href="#" class="btn btn-secondary btn-sm rounded-pill mb-1">Update</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

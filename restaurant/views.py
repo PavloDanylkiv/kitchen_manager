@@ -1,7 +1,11 @@
 from django.views import generic
 from django.views.generic import TemplateView
 
-from restaurant.forms import CookSearchForm, DishSearchForm
+from restaurant.forms import (
+    CookSearchForm,
+    DishSearchForm,
+    DishTypeSearchForm,
+)
 from restaurant.models import DishType, Cook, Dish
 
 
@@ -52,6 +56,28 @@ class DishListView(generic.ListView):
 
     def get_queryset(self):
         queryset = Dish.objects.all()
+        name = self.request.GET.get("name")
+        if name:
+            return queryset.filter(name__icontains=name)
+        return queryset
+
+
+class DishTypeListView(generic.ListView):
+    model = DishType
+    context_object_name = "dish_type_list"
+    template_name = "restaurant/dish_type_list.html"
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super(DishTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = DishTypeSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = DishType.objects.all()
         name = self.request.GET.get("name")
         if name:
             return queryset.filter(name__icontains=name)
