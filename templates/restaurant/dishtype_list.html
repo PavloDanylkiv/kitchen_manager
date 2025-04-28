@@ -23,7 +23,7 @@
               <tr>
                 <td>{{ dish.name }}</td>
                 <td>
-                  <a href="#">See dishes for {{ dish.name }}</a>
+                  <a href="{% url 'restaurant:dish-type-detail' dish.id %}">See dishes for {{ dish.name }}</a>
                 </td>
                 <td class="d-flex gap-2 flex-wrap">
                   <a href="#" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
