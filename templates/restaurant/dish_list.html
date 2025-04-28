@@ -3,13 +3,18 @@
 
 {% block content %}
   <div class="container mt-7 pt-5">
-    <h1>Dish List</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Dish List</h1>
+      <a href="{% url 'restaurant:dish-create' %}" class="btn btn-primary btn-sm rounded-pill">Create Dish</a>
+    </div>
+
     <form action="" method="get" class="d-flex align-items-center mb-4" style="max-width: 400px;">
       <div class="flex-grow-1 me-2">
         {{ search_form|crispy }}
       </div>
       <button class="btn btn-secondary" type="submit">🔎</button>
     </form>
+
     {% if dish_list %}
       <div class="table-responsive">
         <table class="table align-items-center mb-0 table-borderless">
@@ -30,11 +35,11 @@
                 <td>{{ dish.price }}</td>
                 <td>{{ dish.dish_type }}</td>
                 <td>
-                  <a href="#">Click here to find more information about ingredients and cooks</a>
+                  <a href="{% url 'restaurant:dish-detail' dish.id %}">Click here to find more information about ingredients and cooks</a>
                 </td>
                 <td class="d-flex gap-2 flex-wrap">
-                  <a href="#" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
-                  <a href="#" class="btn btn-secondary btn-sm rounded-pill mb-1">Update</a>
+                  <a href="{% url 'restaurant:dish-delete' dish.id %}" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
+                  <a href="{% url 'restaurant:dish-update' dish.id %}" class="btn btn-secondary btn-sm rounded-pill mb-1">Update</a>
                 </td>
               </tr>
             {% endfor %}
