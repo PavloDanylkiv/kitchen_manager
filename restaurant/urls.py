@@ -10,6 +10,7 @@ from .views import (
     DishTypeDetailView,
     DishTypeUpdateView,
     CookUpdateView,
+    DishUpdateView,
 )
 
 urlpatterns = [
@@ -23,6 +24,11 @@ urlpatterns = [
     ),
     path("dishes/", DishListView.as_view(), name="dish-list"),
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
+    path(
+        "dishes/<int:pk>/update/",
+        DishUpdateView.as_view(),
+        name="dish-update"
+    ),
     path("dish-types/", DishTypeListView.as_view(), name="dish-type-list"),
     path("dish-types/<int:pk>", DishTypeDetailView.as_view(), name="dish-type-detail"),
     path(

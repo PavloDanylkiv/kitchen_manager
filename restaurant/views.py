@@ -8,6 +8,7 @@ from restaurant.forms import (
     DishTypeSearchForm,
     DishTypeUpdateForm,
     CookUpdateForm,
+    DishUpdateForm,
 )
 from restaurant.models import DishType, Cook, Dish
 
@@ -73,6 +74,12 @@ class DishListView(generic.ListView):
         if name:
             return queryset.filter(name__icontains=name)
         return queryset
+
+
+class DishUpdateView(generic.UpdateView):
+    model = Dish
+    form_class = DishUpdateForm
+    success_url = reverse_lazy("restaurant:dish-list")
 
 
 class DishDetailView(generic.DetailView):
