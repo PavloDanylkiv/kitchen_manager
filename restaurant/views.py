@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import TemplateView
 
@@ -5,6 +6,7 @@ from restaurant.forms import (
     CookSearchForm,
     DishSearchForm,
     DishTypeSearchForm,
+    DishTypeUpdateForm,
 )
 from restaurant.models import DishType, Cook, Dish
 
@@ -94,3 +96,9 @@ class DishTypeListView(generic.ListView):
 
 class DishTypeDetailView(generic.DetailView):
     model = DishType
+
+
+class DishTypeUpdateView(generic.UpdateView):
+    model = DishType
+    form_class = DishTypeUpdateForm
+    success_url = reverse_lazy("restaurant:dish-type-list")

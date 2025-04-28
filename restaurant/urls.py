@@ -8,6 +8,7 @@ from .views import (
     DishDetailView,
     CookDetailView,
     DishTypeDetailView,
+    DishTypeUpdateView,
 )
 
 urlpatterns = [
@@ -18,6 +19,11 @@ urlpatterns = [
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
     path("dish-types/", DishTypeListView.as_view(), name="dish-type-list"),
     path("dish-types/<int:pk>", DishTypeDetailView.as_view(), name="dish-type-detail"),
+    path(
+        "dish-types/<int:pk>/update/",
+        DishTypeUpdateView.as_view(),
+        name="dish-type-update"
+    ),
 ]
 
 app_name = "restaurant"

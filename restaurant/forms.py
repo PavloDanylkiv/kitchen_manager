@@ -1,5 +1,8 @@
 from django import forms
 
+from restaurant.models import DishType
+
+
 class CookSearchForm(forms.Form):
     username = forms.CharField(
         max_length=255,
@@ -31,3 +34,9 @@ class DishTypeSearchForm(forms.Form):
             attrs={"placeholder": "Search by name"}
         )
     )
+
+
+class DishTypeUpdateForm(forms.ModelForm):
+    class Meta:
+        model = DishType
+        fields = "__all__"
