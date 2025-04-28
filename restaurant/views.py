@@ -82,6 +82,12 @@ class DishListView(generic.ListView):
         return queryset
 
 
+class DishCreateView(generic.CreateView):
+    model = Dish
+    form_class = DishUpdateForm
+    success_url = reverse_lazy("restaurant:dish-list")
+
+
 class DishUpdateView(generic.UpdateView):
     model = Dish
     form_class = DishUpdateForm
@@ -91,6 +97,7 @@ class DishUpdateView(generic.UpdateView):
 class DishDeleteView(generic.DeleteView):
     model = Dish
     template_name = "restaurant/dish_confirm_delete.html"
+    success_url = reverse_lazy("restaurant:dish-list")
 
 
 class DishDetailView(generic.DetailView):
