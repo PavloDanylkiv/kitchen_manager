@@ -74,7 +74,6 @@ class DishDetailView(generic.DetailView):
 class DishTypeListView(generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "restaurant/dish_type_list.html"
     paginate_by = 5
 
     def get_context_data(self, **kwargs):
@@ -91,3 +90,7 @@ class DishTypeListView(generic.ListView):
         if name:
             return queryset.filter(name__icontains=name)
         return queryset
+
+
+class DishTypeDetailView(generic.DetailView):
+    model = DishType
