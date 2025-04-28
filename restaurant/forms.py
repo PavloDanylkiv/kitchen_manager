@@ -1,6 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import UserChangeForm
 
-from restaurant.models import DishType
+from restaurant.models import DishType, Cook
 
 
 class CookSearchForm(forms.Form):
@@ -12,6 +13,19 @@ class CookSearchForm(forms.Form):
             attrs={"placeholder": "Search by username"}
         )
     )
+
+
+class CookUpdateForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = Cook
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "years_of_experience",
+        )
 
 
 class DishSearchForm(forms.Form):
