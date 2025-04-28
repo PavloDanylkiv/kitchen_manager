@@ -88,6 +88,11 @@ class DishUpdateView(generic.UpdateView):
     success_url = reverse_lazy("restaurant:dish-list")
 
 
+class DishDeleteView(generic.DeleteView):
+    model = Dish
+    template_name = "restaurant/dish_confirm_delete.html"
+
+
 class DishDetailView(generic.DetailView):
     model = Dish
     queryset = Dish.objects.select_related().prefetch_related()
