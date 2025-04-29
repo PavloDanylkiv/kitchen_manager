@@ -30,9 +30,12 @@
                 <td>{{ cook.first_name }}</td>
                 <td>{{ cook.last_name }}</td>
                 <td>{{ cook.years_of_experience }}</td>
+                <td>
+                  <a href="{% url 'restaurant:cook-detail' cook.id %}">More about {{ cook.first_name }}</a>
+                </td>
                 <td class="d-flex gap-2 flex-wrap">
-                  <a href="#" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
-                  <a href="#" class="btn btn-secondary btn-sm rounded-pill mb-1">Update</a>
+                  <a href="{% url 'restaurant:cook-delete' cook.id %}" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
+                  <a href="{% url 'restaurant:cook-update' cook.id %}" class="btn btn-secondary btn-sm rounded-pill mb-1">Update</a>
                 </td>
               </tr>
             {% endfor %}
