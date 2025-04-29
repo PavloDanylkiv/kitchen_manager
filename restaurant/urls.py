@@ -16,12 +16,14 @@ from .views import (
     DishDeleteView,
     DishCreateView,
     DishTypeCreateView,
+    CookCreateView,
 )
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("cooks/", CookListView.as_view(), name="cook-list"),
     path("cooks/<int:pk>/", CookDetailView.as_view(), name="cook-detail"),
+    path("cook/create/", CookCreateView.as_view(), name="cook-create"),
     path(
         "cooks/<int:pk>/update/",
         CookUpdateView.as_view(),

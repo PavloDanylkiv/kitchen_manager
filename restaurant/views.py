@@ -9,6 +9,7 @@ from restaurant.forms import (
     DishTypeUpdateForm,
     CookUpdateForm,
     DishUpdateForm,
+    CookCreateForm,
 )
 from restaurant.models import DishType, Cook, Dish
 
@@ -47,6 +48,12 @@ class CookListView(generic.ListView):
 
 class CookDetailView(generic.DetailView):
     model = Cook
+
+
+class CookCreateView(generic.CreateView):
+    model = Cook
+    form_class = CookCreateForm
+    success_url = reverse_lazy("restaurant:index")
 
 
 class CookUpdateView(generic.UpdateView):
