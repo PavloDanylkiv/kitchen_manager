@@ -1,8 +1,15 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.core.exceptions import ValidationError
 
 from restaurant.models import DishType, Cook, Dish, Ingredient
+
+
+def validation_years_of_experience(years: int):
+    if years < 0:
+        raise ValidationError("Years of experience cannot be negative.")
+    return years
 
 
 class CookSearchForm(forms.Form):
@@ -28,6 +35,11 @@ class CookCreateForm(UserCreationForm):
             "years_of_experience",
         )
 
+    def clean_years_of_experience(self):
+        return validation_years_of_experience(
+            self.cleaned_data["years_of_experience"]
+        )
+
 
 class CookUpdateForm(UserChangeForm):
     password = None
@@ -39,6 +51,11 @@ class CookUpdateForm(UserChangeForm):
             "last_name",
             "username",
             "years_of_experience",
+        )
+
+    def clean_years_of_experience(self):
+        return validation_years_of_experience(
+            self.cleaned_data["years_of_experience"]
         )
 
 
