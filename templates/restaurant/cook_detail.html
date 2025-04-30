@@ -1,0 +1,43 @@
+{% extends "layouts/base-presentation.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container mt-7 pt-1">
+
+    <div class="position-relative mb-5">
+      <a href="{% url 'restaurant:cook-list' %}" class="btn btn-secondary btn-sm position-absolute" style="left: 0; top: 50%; transform: translateY(-50%);">
+        Back
+      </a>
+      <div class="text-center" style="padding-left: 80px;">
+        <h1 class="display-4 fw-bold">{{ cook.first_name }} {{ cook.last_name }}</h1>
+        <p class="lead text-muted">{{ cook.years_of_experience }} years of experience</p>
+      </div>
+    </div>
+
+    {% if cook.dishes.all %}
+    <h3 class="mt-5 mb-3 text-primary">Dishes made by {{ cook.first_name }}</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover shadow-sm rounded">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Dish Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dish in cook.dishes.all %}
+            <tr>
+              <td>{{ dish.name }}</td>
+              <td>{{ dish.description }}</td>
+              <td>{{ dish.dish_type }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      {% else %}
+      <strong>This cook hasn't cooked any dishes yet.</strong>
+    {% endif %}
+  </div>
+{% endblock %}

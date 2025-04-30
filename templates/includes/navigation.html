@@ -1,0 +1,84 @@
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid">
+          <a class="navbar-brand font-weight-bolder ms-sm-3" href="{% url 'restaurant:index' %}" rel="tooltip" data-placement="bottom">
+            Home Page
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-auto">
+
+              <!-- Pages dropdown -->
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pages
+                  <img src="{{ ASSETS_ROOT }}/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+                </a>
+                <div class="dropdown-menu dropdown-menu-animation dropdown-md p-3 border-radius-lg mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
+                  <div>
+                    <!-- Kitchen Overview -->
+                    <div class="d-flex align-items-center px-2 py-1">
+                      <div class="icon icon-shape icon-sm border-radius-md bg-gradient-primary text-center me-2 d-flex align-items-center justify-content-center">
+                        <svg width="14px" height="14px" viewBox="0 0 24 24"><path fill="white" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+                      </div>
+                      <span class="text-sm font-weight-bold">Kitchen Overview</span>
+                    </div>
+                    <a href="{% url 'restaurant:index' %}" class="dropdown-item border-radius-md">Home</a>
+                    <a href="{% url 'restaurant:dish-list' %}" class="dropdown-item border-radius-md">Dishes</a>
+                    <a href="{% url 'restaurant:cook-list' %}" class="dropdown-item border-radius-md">Cooks</a>
+                    <a href="{% url 'restaurant:dish-type-list' %}" class="dropdown-item border-radius-md">Dish Types</a>
+
+                    <!-- Account section -->
+                    <div class="d-flex align-items-center px-2 py-1 mt-3">
+                      <div class="icon icon-shape icon-sm border-radius-md bg-gradient-primary text-center me-2 d-flex align-items-center justify-content-center">
+                        <svg width="14px" height="14px" viewBox="0 0 42 42">
+                          <path fill="white" opacity="0.6" d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"/>
+                          <path fill="white" d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75
+                            C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775
+                            0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z"/>
+                        </svg>
+                      </div>
+                      <span class="text-sm font-weight-bold">Account</span>
+                    </div>
+                    <span class="dropdown-item border-radius-md"><strong>User:</strong> {{ user.username }}</span>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Logout -->
+              {% if user.is_authenticated %}
+              <li class="nav-item ms-lg-auto">
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="nav-link nav-link-icon me-2 bg-transparent border-0 text-dark" style="font-weight: 600;">
+                    <i class="fa fa-sign-out me-1"></i>
+                    <span class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+                      Logout
+                    </span>
+                  </button>
+                </form>
+              </li>
+              {% endif %}
+
+              <!-- GitHub -->
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="https://github.com/PavloDanylkiv/kitchen_manager" target="_blank" class="btn btn-sm bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">
+                  PROJECT ON GITHUB
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

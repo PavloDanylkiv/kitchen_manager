@@ -1,0 +1,47 @@
+{% extends "layouts/base-presentation.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container mt-7 pt-5">
+    <h1>Cook List</h1>
+    <form action="" method="get" class="d-flex align-items-center mb-4" style="max-width: 400px;">
+      <div class="flex-grow-1 me-2">
+        {{ search_form|crispy }}
+      </div>
+      <button class="btn btn-secondary" type="submit">🔎</button>
+    </form>
+    {% if cook_list %}
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0 table-borderless">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Years of experience</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cook in cook_list %}
+              <tr>
+                <td>{{ cook.id }}</td>
+                <td>{{ cook.username }}</td>
+                <td>{{ cook.first_name }}</td>
+                <td>{{ cook.last_name }}</td>
+                <td>{{ cook.years_of_experience }}</td>
+                <td>
+                  <a href="{% url 'restaurant:cook-detail' cook.id %}">More about {{ cook.first_name }}</a>
+                </td>
+                <td class="d-flex gap-2 flex-wrap">
+                  <a href="{% url 'restaurant:cook-delete' cook.id %}" class="btn btn-danger btn-sm rounded-pill mb-1">Delete</a>
+                  <a href="{% url 'restaurant:cook-update' cook.id %}" class="btn btn-secondary btn-sm rounded-pill mb-1">Update</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
