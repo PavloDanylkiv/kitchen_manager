@@ -10,9 +10,9 @@ distributed clearly across the team.
 
 ## Discover the kitchen system!
 
-[//]: # (&#40;Wait a minute for the server to load&#41;)
+(Wait a minute for the server to load)
 
-[//]: # ([Check it out! Restaurant Kitchen Service deployed on Render])
+[Check it out! Restaurant Kitchen Service deployed on Render](https://kitchen-manager-wcld.onrender.com)
 
 ### Login Information
 
